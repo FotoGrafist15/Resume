@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Резюме</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./resume.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMW8G2b5ztq4J9RJh6EPn4kWIyWp3I9tQDWQ4bK" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class='menu__burger' aria-label='Меню' role='button' tabindex='0'>
+        <span class='menu__strip'>
+        </span>
+        <span class='menu__strip'>
+        </span>
+        <span class='menu__strip'>
+        </span>
+    </div>
+
+    <div class="menu__overlay"></div>
+
+    <nav class="menu">
+        <a href="#section1">Обо мне</a>
+        <a href="#section2">Желаемая должность</a>
+        <a href="#section3">Опыт работы</a>
+        <a href="#section4">Образование</a>
+        <a href="#section5">Курсы</a>
+        <a href="#section6">Доп. информация</a>
+    </nav>
+
+    <div class="slider-controls">
+        <button class="slider-prev">←</button>
+        <button class="slider-next">→</button>
+    </div>
+
+    <div class="wrapper">
+        <div class='photo'>
+            <img class="image" src="./img/Me.jpg" alt="">
+        </div>
+    
+        <div class="resume">
+            <div class="card section visible" id="section1">
+                <h2>Обо мне</h2>
+                <p>Я Иванов Артём Игоревич</p>
+                <p>Мне 22 года</p>
+                <p><a href="tel:7914 582 8686">+7914 582 8686</a></p>
+                <p><a href="mailto:temaivanov2680@gmail.com">temaivanov2680@gmail.com</a></p>
+                <p>Проживаю: г.Свободный, Амурская область</p>
+                <p>Гражданство: Российская Федерация</p>
+            </div>
+            <div class="card section" id="section2">
+                <h2>Желаемая должность и зарплата</h2>
+                <p>Должность: frontend разработчик, верстальщик, фоторетушер, начинающий видеомонтажер</p>
+                <p>Занятость: Удалённая работа</p>
+                <p>Желаемая зарплата: от 80 тыс</p>
+            </div>
+    
+            <div class="card section" id="section3">
+                <h2>Опыт работы</h2>
+                <span class="text">
+                    <h3>Федеральная сетевая компания</h3>
+                    <p>Электрослесарь по ремонту РУ - работы с электрооборудованием, ремонтные работы</p>
+                    <p>Октябрь 2023 - Сентябрь 2024</p>
+                    <h3>Актив Сервис Сахалин</h3>
+                    <p>Электромонтажник - работы с электрооборудованием, монтаж кабеля</p>
+                    <p>Сентябрь 2024 - Январь 2025</p>
+                </span>
+    
+                <details class="questions-and-answers__spoiler spoiler">
+    				<summary class="spoiler__header">
+    					<ul class="spoiler__list">
+    						<ol class="spoiler__num">1</ol>
+    						<li class="spoiler__text">Федеральная сетевая компания</li>
+    					</ul>
+    					<p class="spoiler__arrow arrow">
+    						<i class="arrow-down"></i>
+    					</p>
+    				</summary>
+    				<p class="spoiler__question">Электрослесарь по ремонту РУ - работы с электрооборудованием, ремонтные работы</p>
+                    <p class="spoiler__question">Октябрь 2023 - Сентябрь 2024</p>
+    			</details>
+    
+                <details class="questions-and-answers__spoiler spoiler">
+    				<summary class="spoiler__header">
+    					<ul class="spoiler__list">
+    						<ol class="spoiler__num">2</ol>
+    						<li class="spoiler__text">Актив Сервис Сахалин</li>
+    					</ul>
+    					<p class="spoiler__arrow arrow"> 
+    						<i class="arrow-down"></i>
+    					</p>
+    				</summary>
+    				<p class="spoiler__question">Электромонтажник - работы с электрооборудованием, монтаж кабеля</p>
+                    <p class="spoiler__question">Сентябрь 2024 - Январь 2025</p>
+    			</details>
+            </div>
+    
+            <div class="card section" id="section4">
+                <h2>Образование</h2>
+                <span class="text">
+                    <h3>Среднее профессиональное образование</h3>
+                    <p>Машинист технологических насосов и компрессоров (5 квалификаций)</p>
+                    <h3>Незаконченное высшее образование</h3>
+                    <p>Автоматизация технологических процессов и производств</p>
+                    <h3>Самостоятельное изучение</h3>
+                    <p>Мой стэк: HTML5, CSS3, JavaScript, Vue3, Wordpress, My SQL, Git Hab, Git Lab, ChatGPT, DeepSeek</p>
+                    <p>Программы: Adobe Photoshop, Adobe Premiere Pro, VS Code</p>
+                </span>
+    
+                <details class="questions-and-answers__spoiler spoiler">
+    				<summary class="spoiler__header">
+    					<ul class="spoiler__list">
+    						<ol class="spoiler__num">1</ol>
+    						<li class="spoiler__text">Среднее профессиональное образование</li>
+    					</ul>
+    					<p class="spoiler__arrow arrow">
+    						<i class="arrow-down"></i>
+    					</p>
+    				</summary>
+    				<p class="spoiler__question">Машинист технологических насосов и компрессоров (5 квалификаций)</p>
+    			</details>
+    
+                <details class="questions-and-answers__spoiler spoiler">
+    				<summary class="spoiler__header">
+    					<ul class="spoiler__list">
+    						<ol class="spoiler__num">2</ol>
+    						<li class="spoiler__text">Незаконченное высшее образование</li>
+    					</ul>
+    					<p class="spoiler__arrow arrow"> 
+    						<i class="arrow-down"></i>
+    					</p>
+    				</summary>
+    				<p class="spoiler__question">Автоматизация технологических процессов и производств</p>
+    			</details>
+    
+                <details class="questions-and-answers__spoiler spoiler">
+    				<summary class="spoiler__header">
+    					<ul class="spoiler__list">
+    						<ol class="spoiler__num">3</ol>
+    						<li class="spoiler__text">Самостоятельное изучение</li>
+    					</ul>
+    					<p class="spoiler__arrow arrow"> 
+    						<i class="arrow-down"></i>
+    					</p>
+    				</summary>
+    				<p class="spoiler__question">Мой стэк: HTML5, CSS3, JavaScript, Vue3, Wordpress, My SQL, Git Hab, Git Lab, ChatGPT, DeepSeek</p>
+    				<p class="spoiler__question">Программы: Adobe Photoshop, Adobe Premiere Pro, VS Code</p>
+    			</details>
+    
+            </div>
+            
+            <div class="card section" id="section5">
+                <h2>Повышение квалификации, курсы</h2>
+                <ul>
+                    <li>Курс повышения квалификации для электрослесарей по ремонту РУ</li>
+                    <li>Курс по направлению IT-куба, "Системное администрирование", в объёме 24 часа</li>
+                </ul>
+            </div>
+            <div class="card section" id="section6">
+                <h2>Дополнительная информация</h2>
+                <p>Мой Telegram: @FotoGraf_ist</p>
+                <p>Языки: русский, английский(необходимая база для написания кода)</p>
+                <p>Портфолио разработанных сайтов имеется</p>
+                <p>Готов к самостоятельному обучению</p>
+            </div>
+    
+        </div>
+    </div>
+
+    <script src="./resume.js"></script>
+</body>
+</html>
