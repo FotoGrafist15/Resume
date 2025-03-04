@@ -23,22 +23,36 @@ function setupSectionScrolling() {
     }
 
     // Обработчик прокрутки
-    window.addEventListener('wheel', (event) => {
+    function handleWheel(event) {
         if (event.deltaY > 0) {
             showSection((currentSection + 1) % sections.length); // Прокрутка вниз
         } else {
             showSection((currentSection - 1 + sections.length) % sections.length); // Прокрутка вверх
         }
-    });
+    }
+
+    window.addEventListener('wheel', handleWheel);
 
     // Обработчики для ссылок в меню
+    function handleLinkClick(event, index) {
+        event.preventDefault();
+        showSection(index, true); // Мгновенный переход
+    }
+
     const links = document.querySelectorAll('.menu a');
     links.forEach((link, index) => {
-        link.addEventListener('click', function (event) {
-            event.preventDefault();
-            showSection(index, true); // Мгновенный переход
-        });
+        link.addEventListener('click', (event) => handleLinkClick(event, index));
     });
+
+    // Возвращаем функции для удаления обработчиков
+    return {
+        removeHandlers: () => {
+            window.removeEventListener('wheel', handleWheel);
+            links.forEach((link, index) => {
+                link.removeEventListener('click', (event) => handleLinkClick(event, index));
+            });
+        }
+    };
 }
 
 function setupSlider() {
@@ -54,24 +68,52 @@ function setupSlider() {
         sections[currentSection].classList.add('visible');
     }
 
+    function handlePrevClick() {
+        const newIndex = (currentSection - 1 + sections.length) % sections.length;
+        showSection(newIndex);
+    }
+
+    function handleNextClick() {
+        const newIndex = (currentSection + 1) % sections.length;
+        showSection(newIndex);
+    }
+
     // Кнопка "Назад"
     if (prevButton) {
-        prevButton.addEventListener('click', function () {
-            const newIndex = (currentSection - 1 + sections.length) % sections.length;
-            showSection(newIndex);
-        });
+        prevButton.addEventListener('click', handlePrevClick);
     }
 
     // Кнопка "Вперёд"
     if (nextButton) {
-        nextButton.addEventListener('click', function () {
-            const newIndex = (currentSection + 1) % sections.length;
-            showSection(newIndex);
-        });
+        nextButton.addEventListener('click', handleNextClick);
     }
+
+    // Обработчики для ссылок в меню
+    function handleLinkClick(event, index) {
+        event.preventDefault();
+        showSection(index); // Переход к соответствующей секции
+    }
+
+    const links = document.querySelectorAll('.menu a');
+    links.forEach((link, index) => {
+        link.addEventListener('click', (event) => handleLinkClick(event, index));
+    });
+
+    // Возвращаем функции для удаления обработчиков
+    return {
+        removeHandlers: () => {
+            if (prevButton) prevButton.removeEventListener('click', handlePrevClick);
+            if (nextButton) nextButton.removeEventListener('click', handleNextClick);
+            links.forEach((link, index) => {
+                link.removeEventListener('click', (event) => handleLinkClick(event, index));
+            });
+        }
+    };
 }
 
 let currentMode = null; // Текущий режим (desktop или mobile)
+let sectionScrollingHandlers = null;
+let sliderHandlers = null;
 
 function initializeLogic() {
     const isMobile = window.innerWidth <= 940;
@@ -80,17 +122,10 @@ function initializeLogic() {
     if (currentMode === (isMobile ? 'mobile' : 'desktop')) return;
 
     // Удаляем старые обработчики
-    if (currentMode === 'desktop') {
-        window.removeEventListener('wheel', handleWheel);
-        const links = document.querySelectorAll('.menu a');
-        links.forEach(link => {
-            link.removeEventListener('click', handleLinkClick);
-        });
-    } else if (currentMode === 'mobile') {
-        const prevButton = document.querySelector('.slider-prev');
-        const nextButton = document.querySelector('.slider-next');
-        if (prevButton) prevButton.removeEventListener('click', handlePrevClick);
-        if (nextButton) nextButton.removeEventListener('click', handleNextClick);
+    if (currentMode === 'desktop' && sectionScrollingHandlers) {
+        sectionScrollingHandlers.removeHandlers();
+    } else if (currentMode === 'mobile' && sliderHandlers) {
+        sliderHandlers.removeHandlers();
     }
 
     // Устанавливаем новый режим
@@ -98,9 +133,9 @@ function initializeLogic() {
 
     // Инициализируем новую логику
     if (isMobile) {
-        setupSlider(); // Включаем слайдер
+        sliderHandlers = setupSlider(); // Включаем слайдер
     } else {
-        setupSectionScrolling(); // Включаем переключение секций
+        sectionScrollingHandlers = setupSectionScrolling(); // Включаем переключение секций
     }
 }
 
@@ -111,7 +146,6 @@ window.addEventListener('resize', initializeLogic);
 document.addEventListener('DOMContentLoaded', initializeLogic);
 
 // Появление и скрытие меню при нажатии на кнопку, а также скрытие при нажатии вне меню
-
 document.addEventListener('DOMContentLoaded', function () {
     const menuBurger = document.querySelector('.menu__burger');
     const menu = document.querySelector('.menu');

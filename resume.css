@@ -173,7 +173,6 @@ p {
 }
 
 .menu__burger {
-	margin: 10px 0 auto;
     height: 32px;
     position: relative;
     overflow: hidden;
@@ -181,8 +180,8 @@ p {
     z-index: 1000;
     width: 36px;
     margin: 0 auto;
-    background: linear-gradient(359deg, #9d713a, #f3ff69f7);
-    border-radius: 50%;
+    background: linear-gradient(359deg, #c8ffc3, #befff1f7);
+    border-radius: 15%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
